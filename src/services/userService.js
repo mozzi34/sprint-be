@@ -28,10 +28,12 @@ export const getUserDetail = async (id) => {
   return user;
 };
 
-export const editUser = async (id) => {
+export const editUser = async (id, nickname) => {
   const user = await prisma.user.update({
     where: { id },
-    data: req.body,
+    data: {
+      nickname: nickname,
+    },
   });
 
   return user;
@@ -54,7 +56,7 @@ export const createUser = async (user) => {
     error.status = 422;
     throw error;
   }
-  const hashedPassword = await hashingPassword(user.encryptedPassword); 
+  const hashedPassword = await hashingPassword(user.encryptedPassword);
 
   const createdUser = await prisma.user.create({
     data: {

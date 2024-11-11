@@ -37,14 +37,15 @@ export const getFreeBoardDetail = async (req, res, next) => {
 
 export const postFreeBoard = async (req, res, next) => {
   try {
-    const { title, content, tags } = req.body;
+    const { title, content, tags, images } = req.body;
     const { userId } = req.auth;
 
     const data = await freeBoardService.postFreeBoard(
       title,
       content,
       tags,
-      userId
+      userId,
+      req
     );
 
     res.status(201).json({
@@ -58,9 +59,15 @@ export const postFreeBoard = async (req, res, next) => {
 export const editFreeBoard = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { title, content } = req.body;
+    const { title, content, tags } = req.body;
 
-    const data = await freeBoardService.editFreeBoard(title, content, id, req);
+    const data = await freeBoardService.editFreeBoard(
+      title,
+      content,
+      tags,
+      id,
+      req
+    );
 
     res.status(201).json({
       data,

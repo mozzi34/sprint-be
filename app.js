@@ -10,15 +10,14 @@ import fleamarketRoute from './src/routes/fleamarket.js';
 import commentRoute from './src/routes/comment.js';
 import favoriteRoute from './src/routes/favorite.js';
 import errorHandler from './src/middlewares/errorHandler.js';
+import { swaggerDocs } from './src/config/swagger.js';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('default path');
-});
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/freeboard', freeboardRoute);
 app.use('/fleamarket', fleamarketRoute);
 app.use('/comment', commentRoute);

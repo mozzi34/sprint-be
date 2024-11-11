@@ -22,17 +22,18 @@ export const getUserDetail = async (req, res, next) => {
   }
 };
 
-export const editUser = async (req, res) => {
+export const editUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await userService.editUser(id);
+    const { nickname } = req.body;
+    const user = await userService.editUser(id, nickname);
     res.status(200).json(user);
   } catch (error) {
     next(error);
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     await userService.deleteUser(id);

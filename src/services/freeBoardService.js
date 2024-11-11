@@ -100,12 +100,16 @@ export const getFreeBoardDetail = async (id, userId) => {
   return article;
 };
 
-export const postFreeBoard = async (title, content, tags, userId) => {
+export const postFreeBoard = async (title, content, tags, userId, req) => {
+  const imagePaths = req.files ? req.files.map((file) => file.path) : [];
+  const tagsArray = tags ? tags.split(',') : [];
+
   const article = await prisma.freeBoard.create({
     data: {
       title: title,
       content: content,
-      tags,
+      tags: tagsArray,
+      images: imagePaths,
       userId,
     },
   });
@@ -113,10 +117,10 @@ export const postFreeBoard = async (title, content, tags, userId) => {
   return article;
 };
 
-export const editFreeBoard = async (title, content, id, req) => {
+export const editFreeBoard = async (title, content, tags, id, req) => {
   const article = await prisma.freeBoard.update({
     where: { id: Number(id) },
-    data: { title, content },
+    data: { title, content, tags },
   });
 
   return article;
