@@ -30,18 +30,17 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.9.0",
-    "nodemon": "^3.1.4",
+    "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon dist/app.js",
-    "seed": "node products_data/seed.js",
+    "dev": "nodemon src/app.tsx",
     "migrate-dev": "npx prisma migrate dev",
     "build": "tsc",
     "start": "node ./dist/app.js",
-    "dev:server": "nodemon --watch src --exec 'npx tsx' src/app.tsx"
+    "dev:server": "nodemon"
   }
 }
