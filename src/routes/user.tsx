@@ -1,12 +1,10 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
 import * as userController from '../controllers/userController.js';
 import * as validateUserMiddleware from '../middlewares/validate/validateUserMiddleware.js';
 import jwtMiddleware from '../middlewares/jwtMiddleware.js';
 import cookieParser from 'cookie-parser';
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 router.use(cookieParser());
 

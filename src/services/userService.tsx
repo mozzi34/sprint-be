@@ -1,11 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import redis from 'redis';
 import { createError } from '../utils/error';
 
 const prisma = new PrismaClient();
-const redisClient = redis.createClient();
 
 interface UserValues {
   id: string;

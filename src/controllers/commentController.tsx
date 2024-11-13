@@ -1,17 +1,6 @@
-import { string } from 'superstruct';
 import * as commentService from '../services/commentService.js';
 import { Request, Response, NextFunction } from 'express';
 import { CommentsValues } from '../services/commentService.js';
-
-interface GetCommentsQuery {
-  cursor?: string;
-  limit?: string;
-}
-
-interface GetCommentsParams {
-  articleId: string;
-  articleCategory: string;
-}
 
 export const getComments = async (
   req: Request,

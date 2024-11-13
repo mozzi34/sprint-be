@@ -1,11 +1,9 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
 import jwtMiddleware from '../middlewares/jwtMiddleware';
 import validateCommentMiddleware from '../middlewares/validate/validateCommentMiddleware.js';
 import * as commentController from '../controllers/commentController.js';
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 router.get(
   '/:articleCategory/:articleId',
