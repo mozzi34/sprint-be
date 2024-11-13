@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const errorHandler = (err, req, res, next) => {
     // console.error(err);
     const statusCode = err.status || 500;
@@ -12,4 +10,4 @@ const errorHandler = (err, req, res, next) => {
         },
     });
 };
-exports.default = errorHandler;
+export default errorHandler;

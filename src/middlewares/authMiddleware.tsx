@@ -1,7 +1,7 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express';
-import { CustomError_Class } from './jwtMiddleware';
+import { CustomError_Class } from '../utils/error';
 
 const prisma = new PrismaClient();
 const secret = process.env.JWT_SECRET as string;

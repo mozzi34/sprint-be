@@ -1,41 +1,21 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CustomError_Class = void 0;
-const express_jwt_1 = require("express-jwt");
-const client_1 = require("@prisma/client");
-const prisma = new client_1.PrismaClient();
+import { expressjwt } from 'express-jwt';
+import { PrismaClient } from '@prisma/client';
+import { CustomError_Class } from '../utils/error';
+const prisma = new PrismaClient();
 const secret = process.env.JWT_SECRET;
-class CustomError_Class extends Error {
-    constructor(message, code, status) {
-        super(message);
-        this.code = code;
-        this.status = status;
-        this.name = this.constructor.name;
-    }
-}
-exports.CustomError_Class = CustomError_Class;
-const verifyAccessToken = (0, express_jwt_1.expressjwt)({
+const verifyAccessToken = expressjwt({
     secret,
     algorithms: ['HS256'],
 });
-const verifyRefreshToken = (0, express_jwt_1.expressjwt)({
+const verifyRefreshToken = expressjwt({
     secret: secret,
     algorithms: ['HS256'],
     getToken: (req) => req.cookies.refreshToken,
 });
-const verifyFleaMarketAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const verifyFleaMarketAuth = async (req, res, next) => {
     const { id: fleaMarketId } = req.params;
     try {
-        const fleaMarketArticle = yield prisma.fleaMarket.findUnique({
+        const fleaMarketArticle = await prisma.fleaMarket.findUnique({
             where: {
                 id: Number(fleaMarketId),
             },
@@ -48,7 +28,7 @@ const verifyFleaMarketAuth = (req, res, next) => __awaiter(void 0, void 0, void 
                 throw error;
             }
         }
-        if ((fleaMarketArticle === null || fleaMarketArticle === void 0 ? void 0 : fleaMarketArticle.userId) !== req.auth.userId) {
+        if (fleaMarketArticle?.userId !== req.auth.userId) {
             const error = new Error('권한이 없습니다.');
             if (error instanceof CustomError_Class) {
                 error.code = 403;
@@ -61,11 +41,11 @@ const verifyFleaMarketAuth = (req, res, next) => __awaiter(void 0, void 0, void 
     catch (error) {
         return next(error);
     }
-});
-const verifyFreeBoardAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+};
+const verifyFreeBoardAuth = async (req, res, next) => {
     const { id: freeBoardId } = req.params;
     try {
-        const freeBoardArticle = yield prisma.freeBoard.findUnique({
+        const freeBoardArticle = await prisma.freeBoard.findUnique({
             where: {
                 id: Number(freeBoardId),
             },
@@ -78,7 +58,7 @@ const verifyFreeBoardAuth = (req, res, next) => __awaiter(void 0, void 0, void 0
                 throw error;
             }
         }
-        if ((freeBoardArticle === null || freeBoardArticle === void 0 ? void 0 : freeBoardArticle.userId) !== req.auth.userId) {
+        if (freeBoardArticle?.userId !== req.auth.userId) {
             const error = new Error('권한이 없습니다.');
             if (error instanceof CustomError_Class) {
                 error.code = 403;
@@ -91,11 +71,11 @@ const verifyFreeBoardAuth = (req, res, next) => __awaiter(void 0, void 0, void 0
     catch (error) {
         return next(error);
     }
-});
-const verifyCommentAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+};
+const verifyCommentAuth = async (req, res, next) => {
     const { id: commentId } = req.params;
     try {
-        const comment = yield prisma.comment.findUnique({
+        const comment = await prisma.comment.findUnique({
             where: {
                 id: Number(commentId),
             },
@@ -108,7 +88,7 @@ const verifyCommentAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, 
                 throw error;
             }
         }
-        if ((comment === null || comment === void 0 ? void 0 : comment.userId) !== req.auth.userId) {
+        if (comment?.userId !== req.auth.userId) {
             const error = new Error('권한이 없습니다.');
             if (error instanceof CustomError_Class) {
                 error.code = 403;
@@ -121,8 +101,8 @@ const verifyCommentAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, 
     catch (error) {
         return next(error);
     }
-});
-exports.default = {
+};
+export default {
     verifyAccessToken,
     verifyRefreshToken,
     verifyFleaMarketAuth,

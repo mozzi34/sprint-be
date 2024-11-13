@@ -1,27 +1,11 @@
 import { expressjwt } from 'express-jwt';
 import { PrismaClient } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express';
+import { CustomError_Class } from '../utils/error';
 
 const prisma = new PrismaClient();
 
 const secret = process.env.JWT_SECRET as string;
-
-export class CustomError_Class extends Error {
-  code: number | string;
-  status: number;
-
-  response?: {
-    code: number;
-    message: string;
-  };
-
-  constructor(message: string, code: number, status: number) {
-    super(message);
-    this.code = code;
-    this.status = status;
-    this.name = this.constructor.name;
-  }
-}
 
 const verifyAccessToken = expressjwt({
   secret,

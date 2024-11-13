@@ -1,5 +1,5 @@
-export class CustomError extends Error {
-  code: number;
+export class CustomError_Class extends Error {
+  code: number | string;
   status: number;
 
   constructor(message: string, code: number, status: number) {
@@ -10,6 +10,6 @@ export class CustomError extends Error {
 }
 
 export const createError = (message: string, code: number, status: number) => {
-  const error = new CustomError(message, code, status);
+  const error = new CustomError_Class(message, code, status);
   throw error;
 };

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { CustomError_Class } from '../jwtMiddleware';
+import { CustomError_Class } from '../../utils/error';
 
 const validateFleaMarketMiddleware = (
   req: Request,

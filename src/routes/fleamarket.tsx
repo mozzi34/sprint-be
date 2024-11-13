@@ -1,8 +1,8 @@
 import express from 'express';
-import * as fleaMarketController from '../controllers/fleaMarketController.js';
-import validateFleaMarketMiddleware from '../middlewares/validate/validateFleaMarketMiddleware.js';
-import jwtMiddleware from '../middlewares/jwtMiddleware.js';
-import upload from '../middlewares/multerMiddleware.js';
+import * as fleaMarketController from '../controllers/fleaMarketController';
+import validateFleaMarketMiddleware from '../middlewares/validate/validateFleaMarketMiddleware';
+import jwtMiddleware from '../middlewares/jwtMiddleware';
+import upload from '../middlewares/multerMiddleware';
 
 const router = express.Router();
 

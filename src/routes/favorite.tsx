@@ -1,6 +1,6 @@
 import express from 'express';
-import jwtMiddleware from '../middlewares/jwtMiddleware.js';
-import * as favoriteController from '../controllers/favoriteController.js';
+import jwtMiddleware from '../middlewares/jwtMiddleware';
+import * as favoriteController from '../controllers/favoriteController';
 
 const router = express.Router();
 
