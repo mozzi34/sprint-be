@@ -3,13 +3,13 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import userRoute from './src/routes/user.js';
-import authRoute from './src/routes/auth.js';
-import freeboardRoute from './src/routes/freeboard.js';
-import fleamarketRoute from './src/routes/fleamarket.js';
-import commentRoute from './src/routes/comment.js';
-import favoriteRoute from './src/routes/favorite.js';
-import errorHandler from './src/middlewares/errorHandler.js';
+import userRoute from './routes/user';
+import authRoute from './routes/auth';
+import freeboardRoute from './routes/freeboard';
+import fleamarketRoute from './routes/fleamarket';
+import commentRoute from './routes/comment';
+import favoriteRoute from './routes/favorite';
+import errorHandler from './middlewares/errorHandler';
 
 const app = express();
 app.use(cors());
