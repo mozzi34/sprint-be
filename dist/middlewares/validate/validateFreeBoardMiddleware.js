@@ -1,4 +1,4 @@
-import { createError } from '../../utils/error.js';
+import { createError } from '../../utils/error';
 const validateFreeBoardMiddleware = (req, res, next) => {
     const { title, content } = req.body;
     if (!title || title.trim() === '') {

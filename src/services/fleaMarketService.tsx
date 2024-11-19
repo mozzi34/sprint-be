@@ -76,9 +76,9 @@ export const getFleaMarket = async ({
     take: Number(limit),
   });
 
-  const articlesWithIsLiked = articles.map((article) => {
+  const articlesWithIsLiked = articles.map((article: any) => {
     const isLiked = userId
-      ? article.favorite?.some((fav) => fav.userId === userId) ?? false
+      ? article.favorite?.some((fav: any) => fav.userId === userId) ?? false
       : false;
     return {
       ...article,
@@ -127,7 +127,7 @@ export const getFleaMarketDetail = async (id: string, userId: any) => {
   });
 
   const isLiked = userId
-    ? article?.favorite.some((fav) => fav.userId === userId)
+    ? article?.favorite.some((fav: any) => fav.userId === userId)
     : false;
 
   if (!article) {

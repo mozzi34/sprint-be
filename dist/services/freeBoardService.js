@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { createError } from '../utils/error.js';
+import { createError } from '../utils/error';
 const prisma = new PrismaClient();
 export const getFreeBoard = async ({ page, limit, keyword, sort, }) => {
     const offset = (Number(page || 0) - 1) * Number(limit);

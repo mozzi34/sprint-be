@@ -1,4 +1,4 @@
-import { createError } from '../../utils/error.js';
+import { createError } from '../../utils/error';
 export const validateUser = (req, res, next) => {
     const { email, encryptedPassword, nickname } = req.body;
     if (!email || email.trim() === '') {

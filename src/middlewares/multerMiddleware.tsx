@@ -1,6 +1,8 @@
 import multer from 'multer';
+import multerS3 from 'multer-s3';
 import path from 'path';
 import fs from 'fs';
+import { S3Client } from '@aws-sdk/client-s3';
 import { Request, Response, NextFunction } from 'express';
 import { CustomError_Class } from '../utils/error';
 
@@ -19,8 +21,22 @@ const storage = multer.diskStorage({
   },
 });
 
+const s3 = new S3Client({
+  region: 'ap-northeast-2',
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+  },
+});
+
 const upload = multer({
-  storage: storage,
+  storage: multerS3({
+    s3: s3,
+    bucket: 'photo-diary',
+    key: (req: Request, file: any, cb: any) => {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  }),
   limits: { fileSize: 1000000 },
   fileFilter: (req: Request, file: any, cb: any) => {
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
