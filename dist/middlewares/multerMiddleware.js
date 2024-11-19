@@ -3,7 +3,7 @@ import multerS3 from 'multer-s3';
 import path from 'path';
 import fs from 'fs';
 import { S3Client } from '@aws-sdk/client-s3';
-import { CustomError_Class } from '../utils/error';
+import { CustomError_Class } from '../utils/error.js';
 const uploadDirectory = 'uploads/';
 if (!fs.existsSync(uploadDirectory)) {
     fs.mkdirSync(uploadDirectory);

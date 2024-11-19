@@ -1,5 +1,5 @@
 import * as fleaMarketService from '../services/fleaMarketService.js';
-import { createError } from '../utils/error';
+import { createError } from '../utils/error.js';
 export const getFleaMarket = async (req, res, next) => {
     try {
         const { page = 1, limit = 5, keyword = '', sort = 'recent' } = req.query;

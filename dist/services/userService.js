@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { createError } from '../utils/error';
+import { createError } from '../utils/error.js';
 const prisma = new PrismaClient();
 export const getUsers = async () => {
     const user = await prisma.user.findMany({

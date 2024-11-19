@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { createError } from '../utils/error';
+import { createError } from '../utils/error.js';
 const prisma = new PrismaClient();
 export const getFleaMarket = async ({ page, limit, keyword, sort, userId, }) => {
     const offset = (page - 1) * limit;

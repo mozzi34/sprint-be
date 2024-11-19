@@ -1,4 +1,4 @@
-import { createError } from '../../utils/error';
+import { createError } from '../../utils/error.js';
 const validateCommentMiddleware = (req, res, next) => {
     const { content } = req.body;
     if (!content || content.trim() === '') {

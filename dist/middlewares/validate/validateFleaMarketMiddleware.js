@@ -1,4 +1,4 @@
-import { CustomError_Class } from '../../utils/error';
+import { CustomError_Class } from '../../utils/error.js';
 const validateFleaMarketMiddleware = (req, res, next) => {
     const { title, content, price } = req.body;
     if (!title || title.trim() === '') {

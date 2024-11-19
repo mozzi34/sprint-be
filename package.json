@@ -44,7 +44,7 @@
     "dev": "nodemon src/app.tsx",
     "migrate-dev": "npx prisma migrate dev",
     "build": "tsc",
-    "start": "node ./dist/app.js",
+    "start": "node dist/app.js",
     "dev:server": "nodemon"
   }
 }

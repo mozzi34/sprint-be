@@ -1,6 +1,6 @@
 import { expressjwt } from 'express-jwt';
 import { PrismaClient } from '@prisma/client';
-import { CustomError_Class } from '../utils/error';
+import { CustomError_Class } from '../utils/error.js';
 const prisma = new PrismaClient();
 const secret = process.env.JWT_SECRET;
 const verifyAccessToken = expressjwt({
